@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.show.bug</groupId>
+  <artifactId>mn-junit5-bug</artifactId>
+  <version>0.1</version>
+  <packaging>${packaging}</packaging>
+
+  <parent>
+    <groupId>io.micronaut</groupId>
+    <artifactId>micronaut-parent</artifactId>
+    <version>3.7.1</version>
+  </parent>
+
+  <properties>
+    <packaging>jar</packaging>
+    <jdk.version>17</jdk.version>
+    <release.version>17</release.version>
+    <micronaut.version>3.7.1</micronaut.version>
+    <micronaut.runtime>netty</micronaut.runtime>
+    <exec.mainClass>com.show.bug.Application</exec.mainClass>
+
+    <wgu.ai.common>1.1.2</wgu.ai.common>
+    <wgu.ai.micronaut.common>1.1.0</wgu.ai.micronaut.common>
+    <wgu.dataaccess.version>0.2.2</wgu.dataaccess.version>
+
+    <newrelic.log.version>2.5.0</newrelic.log.version>
+
+    <aws.version>2.17.288</aws.version>
+    <jdbi.version>3.34.0</jdbi.version>
+    <quartz.version>2.3.2</quartz.version>
+    <jcraft.version>0.1.55</jcraft.version>
+    <javax.mail.version>1.5.0-b01</javax.mail.version>
+    <commons.net.version>3.8.0</commons.net.version>
+    <cronutils.version>9.2.0</cronutils.version>
+    <org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
+    <commons.csv.version>1.9.0</commons.csv.version>
+    <newrelic.version>7.10.0</newrelic.version>
+
+    <wiremock.version>2.34.0</wiremock.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+    <repository>
+      <id>WGU</id>
+      <name>WGU Repository</name>
+      <url>https://nexus.wgu.edu/content/repositories/WGU</url>
+      <layout>default</layout>
+    </repository>
+  </repositories>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency><groupId>io.micronaut</groupId><artifactId>micronaut-bom</artifactId><version>${micronaut.version}</version><type>pom</type><scope>import</scope></dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency><groupId>io.micronaut</groupId><artifactId>micronaut-runtime</artifactId><scope>compile</scope></dependency>
+
+    <dependency><groupId>io.swagger.core.v3</groupId><artifactId>swagger-annotations</artifactId></dependency>
+
+    <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter-api</artifactId><scope>test</scope></dependency>
+    <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter-engine</artifactId><scope>test</scope></dependency>
+    <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter-params</artifactId><scope>test</scope></dependency>
+    <dependency><groupId>io.micronaut.test</groupId><artifactId>micronaut-test-junit5</artifactId><scope>test</scope></dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>io.micronaut.build</groupId>
+        <artifactId>micronaut-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <annotationProcessorPaths combine.children="append">
+            <path><groupId>io.micronaut</groupId><artifactId>micronaut-inject-java</artifactId><version>${micronaut.version}</version></path>
+            <path><groupId>io.micronaut.openapi</groupId><artifactId>micronaut-openapi</artifactId><version>4.5.2</version></path>
+
+          </annotationProcessorPaths>
+          <compilerArgs>
+            <arg>-Amicronaut.processing.group=edu.wgu</arg>
+            <arg>-Amicronaut.processing.module=edu.wgu</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

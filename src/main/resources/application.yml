@@ -1,0 +1,4 @@
+micronaut:
+  application:
+    name: JobTest
+    version: 1.0.0
